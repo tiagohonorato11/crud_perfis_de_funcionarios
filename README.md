@@ -111,6 +111,14 @@ uvicorn app.main:app --reload
 
 O servidor estará disponível em: **http://localhost:8000**
 
+> **⚠️ Problema com login?** Se o usuário `admin/admin123` não funcionar, execute:
+>
+> ```bash
+> python verificar_admin.py
+> ```
+>
+> Este script irá verificar e recriar o usuário administrador se necessário.
+
 ---
 
 ## 💻 Como Usar
@@ -134,8 +142,8 @@ Use estas credenciais para fazer login e começar a cadastrar outros usuários.
 
 ### Funcionalidades por Cargo
 
-| Funcionalidade               | Super | Gestor                | Funcionário                 |
-| ---------------------------- | ----- | --------------------- | ---------------------------- |
+| Funcionalidade              | Super | Gestor                | Funcionário                  |
+| --------------------------- | ----- | --------------------- | ---------------------------- |
 | Ver todos os funcionários   | ✅    | ❌ (apenas seu depto) | ❌ (apenas si mesmo)         |
 | Criar funcionários          | ✅    | ✅ (apenas seu depto) | ❌                           |
 | Editar qualquer funcionário | ✅    | ✅ (apenas seu depto) | ❌                           |
