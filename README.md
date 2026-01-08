@@ -111,11 +111,19 @@ uvicorn app.main:app --reload
 
 O servidor estará disponível em: **http://localhost:8000**
 
-> **⚠️ Problema com login?** Se o usuário `admin/admin123` não funcionar, execute:
+> **⚠️ Problema com login?** Se o usuário `admin/admin123` não funcionar:
 >
-> ```bash
-> python verificar_admin.py
-> ```
+> 1. **Reinstale as dependências** (importante para versões corretas):
+>
+>    ```bash
+>    pip uninstall bcrypt passlib -y
+>    pip install -r requirements.txt
+>    ```
+>
+> 2. **Execute o script de verificação**:
+>    ```bash
+>    python verificar_admin.py
+>    ```
 >
 > Este script irá verificar e recriar o usuário administrador se necessário.
 
