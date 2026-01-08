@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Funcionários</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Tela de Login -->
+        <div id="login-screen" class="screen">
+            <div class="login-container">
+                <h1>Bem-vindo</h1>
+                <p>Faça login para acessar o sistema</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Entrar</button>
+                    <p id="login-error" class="error-msg"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tela do Dashboard (Layout Principal) -->
+        <div id="dashboard-screen" class="screen hidden layout-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="logo">Gestão Colaboradores</div>
+                <nav class="nav-links">
+                    <a href="#" id="link-home" class="nav-link active" onclick="switchTab('home')">Início</a>
+                    <a href="#" id="link-users" class="nav-link" onclick="switchTab('users')">Usuários</a>
+                    <a href="/docs" target="_blank" class="nav-link">Docs API 🔗</a>
+                </nav>
+                <div class="user-info-sidebar">
+                    <span id="user-display">Usuário</span>
+                    <button id="logout-btn">Sair</button>
+                </div>
+            </aside>
+
+            <!-- Conteúdo Principal -->
+            <main class="main-content">
+                
+                <!-- Seção Início -->
+                <section id="tab-home" class="tab-content">
+                    <div class="welcome-container">
+                        <h1>Seja bem-vindo!</h1>
+                        <p>Selecione uma opção no menu lateral para começar.</p>
+                        <img src="/static/img/engrenagens_canto.png" alt="Configurações" class="gear-img">
+                    </div>
+                </section>
+
+                <!-- Seção Usuários -->
+                <section id="tab-users" class="tab-content hidden">
+                    <header class="page-header">
+                        <h2>Gestão de Funcionários</h2>
+                        <button id="add-btn" class="btn-primary">+ Novo Funcionário</button>
+                    </header>
+
+                    <!-- Filtros -->
+                    <div class="filters">
+                        <input type="text" id="search-dept" placeholder="Filtrar por Departamento...">
+                    </div>
+
+                    <!-- Lista -->
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Usuário</th>
+                                    <th>Celular</th>
+                                    <th>Departamento</th>
+                                    <th>Cargo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employees-list">
+                                <!-- JS vai popular aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Modal de Adicionar/Editar -->
+            <div id="modal" class="modal hidden">
+                <div class="modal-content modal-grid">
+                    <span class="close-modal">&times;</span>
+                    <h3 id="modal-title" class="modal-header">Novo Funcionário</h3>
+                    <form id="employee-form" class="form-layout">
+                        <input type="hidden" id="emp-id">
+                        
+                        <!-- Coluna da Esquerda: Foto -->
+                        <div class="photo-section">
+                            <label>Foto de Perfil</label>
+                            <div class="photo-wrapper">
+                                <img id="emp-foto-preview" src="/static/img/default-user.png" alt="Preview">
+                                <a href="#" id="view-photo-btn" class="view-photo-link">Visualizar Foto</a>
+                                <label for="emp-foto-input" class="btn-secondary btn-file">Escolher Foto</label>
+                                <input type="file" id="emp-foto-input" accept="image/*" class="hidden">
+                                <input type="hidden" id="emp-foto-url">
+                            </div>
+                        </div>
+
+                        <!-- Coluna da Direita: Campos -->
+                        <div class="fields-section">
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="text" id="emp-nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sobrenome</label>
+                                    <input type="text" id="emp-sobrenome" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label>Usuário</label>
+                                    <input type="text" id="emp-usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="emp-email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label>Celular</label>
+                                    <input type="text" id="emp-celular" placeholder="(00)9.0000-0000" maxlength="16">
+                                </div>
+                                <div class="form-group">
+                                    <label>Departamento</label>
+                                    <select id="emp-dept" required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="TI">TI</option>
+                                        <option value="Departamento Pessoal">Departamento Pessoal</option>
+                                        <option value="Recursos Humanos">Recursos Humanos</option>
+                                        <option value="Financeiro">Financeiro</option>
+                                        <option value="NPS">NPS</option>
+                                        <option value="Administrativo">Administrativo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row-grid">
+                                <div class="form-group">
+                                    <label>Cargo</label>
+                                    <select id="emp-cargo" required>
+                                        <option value="funcionario">Funcionário</option>
+                                        <option value="gestor">Gestor</option>
+                                        <option value="super">Super</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Senha</label>
+                                    <input type="password" id="emp-senha" placeholder="Apenas para criar/alterar">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão de Salvar (Footer) -->
+                        <div class="form-footer">
+                            <button type="submit" class="btn-primary btn-block">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Zoom Foto -->
+    <div id="zoom-modal" class="modal hidden" style="background: rgba(0,0,0,0.9);">
+        <span class="close-zoom" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <img id="zoom-img" src="" style="max-height: 90vh; max-width: 90vw; border-radius: 8px;">
+    </div>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
