@@ -25,7 +25,6 @@ body {
   overflow: hidden;
 }
 
-/* Utilities */
 .hidden {
   display: none !important;
 }
@@ -59,7 +58,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* Login */
 .login-container {
   max-width: 400px;
   margin: 100px auto;
@@ -100,14 +98,12 @@ body {
   font-size: 0.875rem;
 }
 
-/* Layout Dashboard */
 .layout-container {
   display: flex;
   height: 100vh;
   width: 100vw;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
   background: var(--sidebar-bg);
@@ -166,7 +162,6 @@ body {
   background: #334155;
 }
 
-/* Content */
 .main-content {
   flex: 1;
   padding: 2rem;
@@ -206,7 +201,6 @@ th {
   color: var(--text-light);
 }
 
-/* Home Tab */
 .welcome-container {
   display: flex;
   flex-direction: column;
@@ -252,7 +246,6 @@ th {
   }
 }
 
-/* Photo Styles */
 .user-avatar-table {
   width: 40px;
   height: 40px;
@@ -279,7 +272,6 @@ th {
   text-align: center;
 }
 
-/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -292,71 +284,97 @@ th {
   align-items: center;
   z-index: 1000;
 }
-/* Modal Renovado */
 .modal-content.modal-grid {
-    background: var(--surface);
-    border-radius: 0.5rem;
-    width: 800px;
-    max-width: 95vw;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  background: var(--surface);
+  border-radius: 0.5rem;
+  width: 800px;
+  max-width: 95vw;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-.modal-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+.modal-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
 
 .form-layout {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
-/* Coluna Foto */
-.photo-section { text-align: center; }
-.photo-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 1rem; 
-    margin-top: 1rem;
+.photo-section {
+  text-align: center;
 }
-#emp-foto-preview { 
-    width: 120px; 
-    height: 120px; 
-    border-radius: 50%; 
-    border: 3px solid var(--primary); 
-    object-fit: cover;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.photo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+#emp-foto-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .view-photo-link {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
 }
-.view-photo-link:hover { text-decoration: underline; }
-.btn-file { width: 100%; text-align: center; display: inline-block; }
+.view-photo-link:hover {
+  text-decoration: underline;
+}
+.btn-file {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
 
-/* Coluna Campos */
-.fields-section { display: flex; flex-direction: column; gap: 1rem; }
-.form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fields-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
 
-/* Footer */
 .form-footer {
-    grid-column: 1 / -1;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-    text-align: right;
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  text-align: right;
 }
-.btn-block { width: auto; padding-left: 3rem; padding-right: 3rem; }
+.btn-block {
+  width: auto;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
 
 @media (max-width: 768px) {
-    .form-layout { grid-template-columns: 1fr; }
-    .form-row-grid { grid-template-columns: 1fr; }
-    .btn-block { width: 100%; }
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+  .form-row-grid {
+    grid-template-columns: 1fr;
+  }
+  .btn-block {
+    width: 100%;
+  }
 }

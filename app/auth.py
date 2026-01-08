@@ -7,7 +7,6 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from . import schemas, models, database
 
-# Configurações JWT
 CHAVE_SECRETA = "sua_chave_secreta_super_poderosa"
 ALGORITMO = "HS256"
 TEMPO_EXPIRACAO_MINUTOS = 30

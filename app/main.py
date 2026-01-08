@@ -9,13 +9,10 @@ from sqlalchemy.orm import Session
 import os
 from contextlib import asynccontextmanager
 
-# Define o Lifespan (Startup/Shutdown logic)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Cria as tabelas do banco de dados
     Base.metadata.create_all(bind=engine)
     
-    # Cria usuario super inicial se não existir
     db = SessionLocal()
     try:
         if not db.query(Usuario).filter(Usuario.cargo == CargoUsuario.super).first():
@@ -36,28 +33,23 @@ async def lifespan(app: FastAPI):
         db.close()
     
     yield
-    # Shutdown logic (se necessário)
 
-# Inicializa o App com Lifespan
 app = FastAPI(
     title="API Gestão Funcionários", 
     description="API para gestão de funcionários",
     lifespan=lifespan
 )
 
-# Monta arquivos estáticos para o Frontend
 caminho_static = os.path.join(os.path.dirname(__file__), "static")
 if not os.path.exists(caminho_static):
     os.makedirs(caminho_static)
 
 app.mount("/static", StaticFiles(directory=caminho_static), name="static")
 
-# Inclui Routers
 app.include_router(auth.router)
 app.include_router(funcionarios.router)
 app.include_router(upload.router)
 
-# Rota Raiz
 @app.get("/", include_in_schema=False)
 def root():
     return FileResponse(os.path.join(caminho_static, "index.html"))

@@ -9,7 +9,6 @@
 </head>
 <body>
     <div id="app">
-        <!-- Tela de Login -->
         <div id="login-screen" class="screen">
             <div class="login-container">
                 <h1>Bem-vindo</h1>
@@ -29,9 +28,7 @@
             </div>
         </div>
 
-        <!-- Tela do Dashboard (Layout Principal) -->
         <div id="dashboard-screen" class="screen hidden layout-container">
-            <!-- Sidebar -->
             <aside class="sidebar">
                 <div class="logo">Gestão Colaboradores</div>
                 <nav class="nav-links">
@@ -45,10 +42,8 @@
                 </div>
             </aside>
 
-            <!-- Conteúdo Principal -->
             <main class="main-content">
                 
-                <!-- Seção Início -->
                 <section id="tab-home" class="tab-content">
                     <div class="welcome-container">
                         <h1>Seja bem-vindo!</h1>
@@ -57,19 +52,16 @@
                     </div>
                 </section>
 
-                <!-- Seção Usuários -->
                 <section id="tab-users" class="tab-content hidden">
                     <header class="page-header">
                         <h2>Gestão de Funcionários</h2>
                         <button id="add-btn" class="btn-primary">+ Novo Funcionário</button>
                     </header>
 
-                    <!-- Filtros -->
                     <div class="filters">
                         <input type="text" id="search-dept" placeholder="Filtrar por Departamento...">
                     </div>
 
-                    <!-- Lista -->
                     <div class="table-container">
                         <table>
                             <thead>
@@ -85,14 +77,12 @@
                                 </tr>
                             </thead>
                             <tbody id="employees-list">
-                                <!-- JS vai popular aqui -->
                             </tbody>
                         </table>
                     </div>
                 </section>
             </main>
 
-            <!-- Modal de Adicionar/Editar -->
             <div id="modal" class="modal hidden">
                 <div class="modal-content modal-grid">
                     <span class="close-modal">&times;</span>
@@ -100,7 +90,6 @@
                     <form id="employee-form" class="form-layout">
                         <input type="hidden" id="emp-id">
                         
-                        <!-- Coluna da Esquerda: Foto -->
                         <div class="photo-section">
                             <label>Foto de Perfil</label>
                             <div class="photo-wrapper">
@@ -112,7 +101,6 @@
                             </div>
                         </div>
 
-                        <!-- Coluna da Direita: Campos -->
                         <div class="fields-section">
                             <div class="form-row-grid">
                                 <div class="form-group">
@@ -171,7 +159,6 @@
                             </div>
                         </div>
 
-                        <!-- Botão de Salvar (Footer) -->
                         <div class="form-footer">
                             <button type="submit" class="btn-primary btn-block">Salvar</button>
                         </div>
@@ -181,7 +168,6 @@
         </div>
     </div>
 
-    <!-- Modal Zoom Foto -->
     <div id="zoom-modal" class="modal hidden" style="background: rgba(0,0,0,0.9);">
         <span class="close-zoom" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
         <img id="zoom-img" src="" style="max-height: 90vh; max-width: 90vw; border-radius: 8px;">
