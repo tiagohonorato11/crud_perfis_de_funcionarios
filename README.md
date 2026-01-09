@@ -100,6 +100,9 @@ source venv/bin/activate
 ### 3. Instale as dependências
 
 ```bash
+# Recomendado: Atualizar o pip antes de instalar
+python -m pip install --upgrade pip
+
 pip install -r requirements.txt
 ```
 
@@ -111,21 +114,13 @@ uvicorn app.main:app --reload
 
 O servidor estará disponível em: **http://localhost:8000**
 
-> **⚠️ Problema com login?** Se o usuário `admin/admin123` não funcionar:
->
-> 1. **Reinstale as dependências** (importante para versões corretas):
->
->    ```bash
->    pip uninstall bcrypt passlib -y
->    pip install -r requirements.txt
->    ```
->
-> 2. **Execute o script de verificação**:
->    ```bash
->    python verificar_admin.py
->    ```
->
-> Este script irá verificar e recriar o usuário administrador se necessário.
+---
+
+## 🔍 Solução de Problemas (Troubleshooting)
+
+Se encontrar erros durante a instalação ou login (especialmente no **Python 3.13** ou com o usuário **admin**), consulte nosso guia detalhado:
+
+👉 **[GUIA DE TROUBLESHOOTING](file:///C:/Users/TIAGO%20HONORATO/Documents/projetos_tiago_honorato/projeto_crud_gestao_funcionarios/TROUBLESHOOTING.md)**
 
 ---
 
