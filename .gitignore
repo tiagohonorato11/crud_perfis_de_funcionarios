@@ -1,12 +1,16 @@
 .venv/
 
 __pycache__/
-*.pyc
-.pytest_cache/
-sql_app.db
-app/static/uploads/*
-!app/static/uploads/.gitkeep
-TROUBLESHOOTING.
 
-uploads/*
+*.pyc
+
+.pytest_cache/
+
+*.db
+
+app/static/uploads/*
+
+app/static/uploads/.gitkeep
+
+TROUBLESHOOTING.
 
