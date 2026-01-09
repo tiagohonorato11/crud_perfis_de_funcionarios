@@ -32,11 +32,10 @@ class UsuarioAtualizacao(BaseModel):
     departamento: Optional[str] = None
     celular: Optional[str] = None
     foto_url: Optional[str] = None
-    # Usuário e Cargo geralmente não mudam facilmente, mantendo simples.
 
 class UsuarioResposta(UsuarioBase):
     id: int
-    cargo: CargoUsuario # Added cargo here as it was removed from UsuarioBase
+    cargo: CargoUsuario
 
     class Config:
         from_attributes = True
