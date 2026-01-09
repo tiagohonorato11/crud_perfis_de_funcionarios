@@ -16,14 +16,13 @@ def criar_funcionario(
     db: Session = Depends(database.get_db), 
     usuario_logado: models.Usuario = Depends(auth.obter_usuario_logado)
 ):
-    # Regra 1: "super" cria qualquer um. "gestor" cria apenas do seu departamento.
+
     if usuario_logado.cargo == models.CargoUsuario.gestor:
         if usuario_in.departamento != usuario_logado.departamento:
             raise HTTPException(status_code=403, detail="Gestores podem criar funcionários apenas do seu departamento.")
     elif usuario_logado.cargo != models.CargoUsuario.super:
         raise HTTPException(status_code=403, detail="Apenas Super ou Gestores podem criar novos funcionários.")
     
-    # Validação de unicidade
     if db.query(models.Usuario).filter(models.Usuario.usuario == usuario_in.usuario).first():
         raise HTTPException(status_code=400, detail="Usuário já existe.")
     if db.query(models.Usuario).filter(models.Usuario.email == usuario_in.email).first():
