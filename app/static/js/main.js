@@ -12,6 +12,7 @@ const addBtn = document.getElementById('add-btn');
 const closeBtn = document.querySelector('.close-modal');
 const employeeForm = document.getElementById('employee-form');
 const searchDept = document.getElementById('search-dept');
+const searchName = document.getElementById('search-name');
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
@@ -74,7 +75,8 @@ employeeForm.addEventListener('submit', async (e) => {
     } catch (e) { console.error(e); }
 });
 
-searchDept.addEventListener('input', (e) => loadEmployees(e.target.value));
+searchDept.addEventListener('input', () => loadEmployees());
+searchName.addEventListener('input', () => loadEmployees());
 
 // Máscara Celular
 const celularInput = document.getElementById('emp-celular');
@@ -159,9 +161,17 @@ async function showDashboard() {
     } catch(e) { logout(); }
 }
 
-async function loadEmployees(deptFilter = '') {
+async function loadEmployees() {
+    const deptFilter = searchDept ? searchDept.value : '';
+    const nameFilter = searchName ? searchName.value : '';
+    
     let url = '/funcionarios/';
-    if (deptFilter) url += `?departamento=${deptFilter}`;
+    const params = new URLSearchParams();
+    if (deptFilter) params.append('departamento', deptFilter);
+    if (nameFilter) params.append('nome', nameFilter);
+    
+    const queryString = params.toString();
+    if (queryString) url += `?${queryString}`;
     
     try {
         const res = await def_request(url);

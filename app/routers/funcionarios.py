@@ -1,5 +1,6 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 from .. import database, models, schemas, auth
 
@@ -50,6 +51,7 @@ def listar_funcionarios(
     pular: int = 0, 
     limite: int = 100, 
     departamento: Optional[str] = None,
+    nome: Optional[str] = None,
     db: Session = Depends(database.get_db),
     usuario_logado: models.Usuario = Depends(auth.obter_usuario_logado)
 ):
@@ -65,6 +67,14 @@ def listar_funcionarios(
 
     if departamento and usuario_logado.cargo == models.CargoUsuario.super:
         query = query.filter(models.Usuario.departamento.ilike(f"%{departamento}%"))
+
+    if nome:
+        query = query.filter(
+            or_(
+                models.Usuario.nome.ilike(f"%{nome}%"),
+                models.Usuario.sobrenome.ilike(f"%{nome}%")
+            )
+        )
 
     usuarios = query.offset(pular).limit(limite).all()
     return usuarios
