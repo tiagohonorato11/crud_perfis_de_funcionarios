@@ -116,14 +116,6 @@ O servidor estará disponível em: **http://localhost:8000**
 
 ---
 
-## 🔍 Solução de Problemas (Troubleshooting)
-
-Se encontrar erros durante a instalação ou login (especialmente no **Python 3.13** ou com o usuário **admin**), consulte nosso guia detalhado:
-
-👉 **[GUIA DE TROUBLESHOOTING](file:///C:/Users/TIAGO%20HONORATO/Documents/projetos_tiago_honorato/projeto_crud_gestao_funcionarios/TROUBLESHOOTING.md)**
-
----
-
 ## 💻 Como Usar
 
 ### Primeiro Acesso
@@ -300,12 +292,6 @@ Contribuições são bem-vindas! Para contribuir:
 3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
 4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
 5. Abra um Pull Request
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ---
 
